@@ -1,0 +1,13 @@
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: order_service
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_order_service:/var/lib/mysql
+
+volumes:
+  mysql_order_service:
