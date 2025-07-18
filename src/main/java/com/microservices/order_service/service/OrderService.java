@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.microservices.order_service.client.InventoryClient;
 import com.microservices.order_service.dto.OrderRequest;
 import com.microservices.order_service.dto.OrderResponse;
+import com.microservices.order_service.exception.ProductNotAvailableException;
 import com.microservices.order_service.model.Order;
 import com.microservices.order_service.repository.OrderRepository;
 
@@ -34,7 +35,7 @@ public class OrderService {
     
             orderRepository.save(order);
         } else {
-            throw new RuntimeException("Product with SkuCode " + orderRequest.skuCode() + " is not available");
+            throw new ProductNotAvailableException("Product with SkuCode " + orderRequest.skuCode() + " is not available");
         }
     }
 
